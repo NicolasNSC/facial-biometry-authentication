@@ -1,7 +1,7 @@
-from dataController import create_database, create_db_connection
+from dataController import DatabaseConnector
 
 
-pssword = "" 
-connection = create_db_connection("localhost", "host", pssword, "database")
+connection = DatabaseConnector(host="localhost", user="host", password="password", database_name="database")
+
 #create_database_query = "CREATE DATABASE school"
 #create_database(connection, create_database_query)
