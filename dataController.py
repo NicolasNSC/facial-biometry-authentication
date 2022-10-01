@@ -6,13 +6,11 @@ from mysql.connector import Error
 class DatabaseConnector:
     '''The class responsible to connect the application with the database.'''
     
-    def __init__(self, host:str, user:str, password, database_name:str):
+    def __init__(self, host:str, user:str, password:str, database_name:str):
         self._host = host
         self.user = user
         self.password = password
         self._database_name = database_name
-        
-        self.query = None
         self.connection = None
         
         
@@ -33,24 +31,23 @@ class DatabaseConnector:
         return self.connection
 
 
-    def create_database(self):
-        '''Create a database.'''
-        cursor = connection.cursor()
+    def create_database(self, query: str):
+        cursor = self.connection.cursor()
         
         try:
-            cursor.execute(self.query)
+            cursor.execute(query)
             print("Database created successfully!")
         except Error:
             print(f"Error: {Error}")
 
 
-    def execute_query(self):
-        '''Executes a query.'''
-        cursor = connection.cursor()
+    def execute_query(self, query):
+        cursor = self.connection.cursor()
         
         try:
-            cursor.execute(self.query)
-            connection.commit()
+            cursor.execute(query)
+            self.connection.commit()
             print("Query successfull!")
         except Error:
             print(f"Error: {Error}")
+            
