@@ -16,7 +16,7 @@ class DatabaseConnector:
         
     def create_connection(self):
         '''Stabilishes a connection with the database.'''
-        
+
         try:
             self.connection = mysql.connector.connect(
                 host = self._host,
@@ -30,8 +30,9 @@ class DatabaseConnector:
             
         return self.connection
 
-
     def create_database(self, query: str):
+        '''Function for create database'''
+
         cursor = self.connection.cursor()
         
         try:
@@ -40,8 +41,9 @@ class DatabaseConnector:
         except Error:
             print(f"Error: {Error}")
 
+    def execute_query(self, query: str):
+        '''Run querys'''
 
-    def execute_query(self, query):
         cursor = self.connection.cursor()
         
         try:
@@ -50,4 +52,15 @@ class DatabaseConnector:
             print("Query successfull!")
         except Error:
             print(f"Error: {Error}")
-            
+
+    def read_query(self, query):
+        '''Reads queries created through variables'''
+        cursor = self.connection.cursor()
+        result = None
+
+        try: 
+            cursor.execute(query)
+            result = cursor.fetchall()
+            return result
+        except Error:
+             print(f"Error: {Error}")

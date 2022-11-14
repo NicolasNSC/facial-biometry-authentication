@@ -1,5 +1,5 @@
-from dataController import DatabaseConnector
+import facialIdentification
 
-connection = DatabaseConnector(host="localhost", user="host", password="password", database_name="database")
-connection.create_connection()
-connection.execute_query()
+if __name__ == '__main__':
+    fr = facialIdentification.FaceRecognition()
+    fr.run_recognition()
