@@ -76,7 +76,8 @@ class FaceRecognition:
                     if name == "Unknown":
                         print("User not found")
                         return
-                    elif name == "nicolas.jpeg":
+                    elif name == "nicolas.jpeg" | "matlab.jpg" | "lhuckas.jpg":
+                        print("Bem vindo(a) usuario: " + name)
                         connection = DatabaseConnector(host="localhost", user="user", password="******", database_name="school")
                         connection.create_connection()
 
@@ -85,9 +86,13 @@ class FaceRecognition:
                         FROM AGRICULTOR;
                         '''
                         results = connection.read_query(query)
+                        print("")
+                        print("Abaixo segue os dados que estão disponveis publicamente para consulta: ")
+                        print("")
                         for result in results:
                             return print(result)
                     elif name == "matlab.jpeg":
+                        print("Bem vindo diretor de divisão " + name)
                         connection = DatabaseConnector(host="localhost", user="user", password="******", database_name="school")
                         connection.create_connection()
 
@@ -96,9 +101,13 @@ class FaceRecognition:
                         FROM AGRICULTOR;
                         '''
                         results = connection.read_query(query)
+                        print("")
+                        print("Abaixo segue os dados que estão disponveis consulta sob sua vigência: ")
+                        print("")
                         for result in results:
                             return print(result)
                     elif name == "lhuckas.jpeg":
+                        print("Bem vindo diretor de divisão " + name)
                         connection = DatabaseConnector(host="localhost", user="user", password="******", database_name="school")
                         connection.create_connection()
 
@@ -107,6 +116,9 @@ class FaceRecognition:
                         FROM AGRICULTOR;
                         '''
                         results = connection.read_query(query)
+                        print("")
+                        print("Abaixo segue os dados que estão disponveis consulta sob sua vigência: ")
+                        print("")
                         for result in results:
                             return print(result)  
 
