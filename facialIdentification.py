@@ -83,8 +83,10 @@ class FaceRecognition:
                         connection.create_connection()
 
                         query = '''
-                        SELECT * 
-                        FROM AGRICULTOR;
+                        SELECT T.RUA AS ENDEREÇO, P.LUCRO_ANUAL AS RECIBO_ANUAL, P.INFLUENCIA AS AGROTÓXICO
+                        FROM PLANTACAO AS P
+                        INNER JOIN END_TERRAS AS T ON P.IDPLANTACAO = T.IDTERRAS
+                        WHERE P.LUCRO_ANUAL > 5000.00;;
                         '''
                         results = connection.read_query(query)
                         print("")
@@ -99,8 +101,9 @@ class FaceRecognition:
                         connection.create_connection()
 
                         query = '''
-                        SELECT * 
-                        FROM AGRICULTOR;
+                        SELECT A.NOME, A.EMAIL, E.SETOR, E.CNPJ
+                        FROM AGRICULTOR AS A, EMPRESAS AS E
+                        WHERE A.IDAGRICULTOR = E.IDEMPRESAS
                         '''
                         results = connection.read_query(query)
                         print("")
@@ -109,14 +112,15 @@ class FaceRecognition:
                         for result in results:
                             return print(result)
                     elif name == "lhuckas.jpeg":
-                        print("Bem vindo diretor de divisão " + name)
+                        print("Bem vindo ministro do Meio Ambiente " + name)
                         print("")
                         connection = DatabaseConnector(host="localhost", user="user", password="******", database_name="school")
                         connection.create_connection()
 
                         query = '''
-                        SELECT * 
-                        FROM AGRICULTOR;
+                        SELECT P.NUM_PROCESSO AS PROCESSO, P.CNPJ_EMPRESA CNPJ, E.SETOR, E.PROD_INFLUENCIA AS AGROTÓXICO 
+                        FROM PROCESSOS AS P, EMPRESAS AS E
+                        WHERE E.PROD_INFLUENCIA = 'INSETICIDAS';
                         '''
                         results = connection.read_query(query)
                         print("")
